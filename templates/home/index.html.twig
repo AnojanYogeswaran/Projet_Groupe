@@ -3,17 +3,35 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="ms-3 container mx-auto">
+        <div class="col-7 mx-auto">
+            <table class="table">
+                <thead>
+                <tr class="text-center">
+                    <th scope="col">Nom</th>
+                    <th scope="col">points</th>
 
-<div class="example-wrapper">
+                </tr>
+                </thead>
+                <tbody>
+                {% for club in clubs %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/yassi/OneDrive/Bureau/Projet/Projet_Groupe/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/yassi/OneDrive/Bureau/Projet/Projet_Groupe/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+                    <tr class="text-center">
+
+                        <td> {{ club.nom }}</td>
+                        <td> {{ club.points }}</td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
 {% endblock %}
