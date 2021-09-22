@@ -47,7 +47,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($championnat);
             $manager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('championnat');
         }
         return $this->render('home/ajouterchampionnat.html.twig', [
             'form' => $form->createView(),
@@ -67,7 +67,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($championnat);
             $manager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('championnat');
         }
         return $this->render('home/ajouterchampionnat.html.twig', [
             'form' => $form->createView(),
@@ -83,7 +83,7 @@ class HomeController extends AbstractController
 
         $manager->remove($championnat);
         $manager->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('championnat');
 
     }
 

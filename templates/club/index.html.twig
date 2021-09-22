@@ -34,14 +34,20 @@
         </div>
         <div class="form-group">
             <label for="championnat"> Championnat </label>
-            <select name="championnat" class="form-control">
+            <select name="championnat" class="form-control my-2">
                 {% for championnat in championnats %}
                     <option value="{{ championnat.id }}">
                         {{ championnat.nom }}
                     </option>
                 {% endfor %}
+
+
             </select>
         </div>
+        <a class="btn btn-primary" href="{{ path('ajouterchampionnat') }}">
+            Ajouter un championnat</a>
+        <a class="btn btn-danger" href="{{ path('home') }}">
+            Retour au classement</a>
         <div class="text-center my-3">
             <button class="btn btn-warning" type="submit"> Enregistrer </button>
         </div>
