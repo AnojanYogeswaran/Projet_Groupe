@@ -3,23 +3,34 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="ms-3 container mx-auto">
-        <div class="col-7 mx-auto">
-            <table class="table">
-                <thead>
-                <tr class="text-center">
-                    <th scope="col">Nom</th>
-                    <th scope="col">points</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                {% for club in clubs %}
+    <div class="ms-3 container mx-auto">
+        <div class="my-3">
+            <div class="my-3">
+                <a href="{{ path('ajouterclub') }}"> Ajouter Club </a>
+
+            </div>
+            <div class="col-7 mx-auto">
+                <h2 class="text-center"> Groupe A </h2>
+                <table class="table">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">Nom</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                {% for club in clubs|filter(c => c.groupe == 'A') %}
 
                     <tr class="text-center">
 
-                        <td> {{ club.nom }}</td>
-                        <td> {{ club.points }}</td>
+                        <td class="col-3 text-left"> <a href="{{ path('detailclub', {'id':club.id}) }}">{{ club.nom }}</a></td>
+                        <td class="col-3 text-center"> {{ club.points }}</td>
+                        <td> <a class="btn btn-primary mx-1" href="{{ path('editerclub',{'id':club.id}) }}"> Editer </a>
+                             <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a>
+                        </td>
 
                     </tr>
 
@@ -29,8 +40,40 @@
 
 
         </div>
+            {# Groupe B #}
+            <div class="col-7 mx-auto mt-5">
+                <h2 class="text-center"> Groupe B </h2>
+                <table class="table">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">Nom</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for club in clubs|filter(c => c.groupe == 'B') %}
+
+                        <tr class="text-center">
+
+                            <td class="col-3 text-left"><a href="{{ path('detailclub', {'id':club.id}) }}">{{ club.nom }}</a> </td>
+                            <td class="col-3 text-center" > {{ club.points }}</td>
+                            <td> <a class="btn btn-primary mx-1" href="{{ path('editerclub',{'id':club.id}) }}"> Editer </a>
+                                <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
 
 
+            </div>
+
+        </div>
+        {# Groupe B #}
     </div>
 
 

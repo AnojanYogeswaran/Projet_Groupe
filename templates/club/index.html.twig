@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Hello ClubController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-center"> Ajouter un club </h1>
+    {{ form_start(form) }}
+
+    <div class="col-7 mx-auto mt-3">
+        <div class="col">
+            {{ form_row(form.nom) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.entraineur) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.points) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.stade) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.groupe) }}
+        </div>
+        <div class="form-group">
+            <label for="championnat"> Championnat </label>
+            <select name="championnat" class="form-control">
+                {% for championnat in championnats %}
+                    <option value="{{ championnat.id }}">
+                        {{ championnat.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="text-center my-3">
+            <button class="btn btn-primary" type="submit"> Enregistrer </button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+
+
+{% endblock %}
