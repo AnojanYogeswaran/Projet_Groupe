@@ -1,16 +1,26 @@
 {% extends 'base.html.twig' %}
+{% block title %}
+	{{ club.nom }}
+	- Ligues des champions
+{% endblock %}
 
 {% block body %}
-    <div class="text-white">
-    <h1 class="text-center mt-5"> {{ club.nom }} </h1>
-        <div class="text-center mt-5 card rounded-3 py-5 text-dark col-5 mx-auto">
-        <p class="clubStyleText" >Championnat : {{ club.championnat.nom }} </p>
-        <p class="clubStyleText" >Entraineur : {{ club.entraineur }}</p>
-        <p class="clubStyleText" >Stade : {{ club.stade }}</p>
-        <p class="clubStyleText" >Pays : {{ club.championnat.pays }}</p>
-        </div>
-    </div>
-
+	<div class="text-white">
+		<h1 class="text-center mt-5">
+			{{ club.nom }}
+		</h1>
+		<div class="text-center mt-5 card rounded-3 py-5 text-dark col-5 mx-auto">
+			<p class="clubStyleText">Championnat :
+				{{ club.championnat.nom }}
+			</p>
+			<p class="clubStyleText">Entraineur :
+				{{ club.entraineur }}</p>
+			<p class="clubStyleText">Stade :
+				{{ club.stade }}</p>
+			<p class="clubStyleText">Pays :
+				{{ club.championnat.pays }}</p>
+		</div>
+	</div>
 
 
 {% endblock %}
