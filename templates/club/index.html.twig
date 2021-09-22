@@ -4,23 +4,32 @@
 {% block title %}Hello ClubController!{% endblock %}
 
 {% block body %}
-    <h1 class="text-center"> Ajouter un club </h1>
+
+    <h1 class="text-center text-white">
+        {% if routeName == 'ajouterclub' %}
+            Ajouter
+        {%  else %}
+            Editer
+        {% endif %}
+            un club
+          </h1>
     {{ form_start(form) }}
 
-    <div class="col-7 mx-auto mt-3">
-        <div class="col">
+    <div class="col-7 mx-auto mt-3 p-4 text-white">
+
+        <div class="col mb-3">
             {{ form_row(form.nom) }}
         </div>
-        <div class="col">
+        <div class="col mb-3">
             {{ form_row(form.entraineur) }}
         </div>
-        <div class="col">
+        <div class="col mb-3">
             {{ form_row(form.points) }}
         </div>
-        <div class="col">
+        <div class="col mb-3">
             {{ form_row(form.stade) }}
         </div>
-        <div class="col">
+        <div class="col mb-3">
             {{ form_row(form.groupe) }}
         </div>
         <div class="form-group">
@@ -34,7 +43,7 @@
             </select>
         </div>
         <div class="text-center my-3">
-            <button class="btn btn-primary" type="submit"> Enregistrer </button>
+            <button class="btn btn-warning" type="submit"> Enregistrer </button>
         </div>
     </div>
     {{ form_end(form) }}

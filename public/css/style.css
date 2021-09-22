@@ -1,0 +1,10 @@
+body{
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/642/77/309/champions-champions-league-football-uefa-wallpaper-preview.jpg");
+    background-size: cover;
+}
+.unstyle{
+    text-decoration: none!important;
+}
+.clubStyleText{
+    font-size: 32px;
+}

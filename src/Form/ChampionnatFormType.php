@@ -14,8 +14,7 @@ class ChampionnatFormType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('pays')
-            ->add('Enregistrer',SubmitType::class);
+            ->add('pays');
     }
 
     public function configureOptions(OptionsResolver $resolver)

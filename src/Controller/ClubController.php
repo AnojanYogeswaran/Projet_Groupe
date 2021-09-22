@@ -20,6 +20,7 @@ class ClubController extends AbstractController
     public function ajouterClub(EntityManagerInterface $manager, Request $request, ChampionnatRepository $championnatRepo): Response
     {
         $club = new Club();
+        $routeName = $request->attributes->get('_route');
         $championnat = $championnatRepo->findAll();
         $form = $this->createForm(ClubFormType::class, $club);
         $form->handleRequest($request);
@@ -33,7 +34,8 @@ class ClubController extends AbstractController
         }
         return $this->render('club/index.html.twig', [
             'form' => $form->createView(),
-            'championnats' => $championnat
+            'championnats' => $championnat,
+            'routeName' => $routeName
 
         ]);
     }
@@ -44,6 +46,7 @@ class ClubController extends AbstractController
     public function editClub(EntityManagerInterface $manager, Request $request, ChampionnatRepository $championnatRepo, Club $club): Response
     {
         $championnatAll = $championnatRepo->findAll();
+        $routeName = $request->attributes->get('_route');
         $form = $this->createForm(ClubFormType::class, $club);
         $form->handleRequest($request);
         $idChampionnat = $request->get("championnat");
@@ -56,7 +59,8 @@ class ClubController extends AbstractController
         }
         return $this->render('club/index.html.twig', [
             'form' => $form->createView(),
-            'championnats' => $championnatAll
+            'championnats' => $championnatAll,
+            'routeName' => $routeName
         ]);
     }
     /**

@@ -23,11 +23,14 @@ class HomeController extends AbstractController
     public function index(ClubRepository $clubRepo): Response
     {
         $club = $clubRepo->findAll();
-        dump($club);
+        $groupe = [];
+        foreach ($club as $value) {
+            array_push($groupe, $value->getGroupe());
+        }
+        $groupe = array_unique($groupe);
         return $this->render('home/index.html.twig', [
             'clubs' => $club,
-
-
+            'groupes' => $groupe
         ]);
 
     }
@@ -38,7 +41,7 @@ class HomeController extends AbstractController
     public function addChampionnat(EntityManagerInterface $manager, Request $request)
     {
         $championnat = new Championnat();
-
+        $routeName = $request->attributes->get('_route');
         $form = $this->createForm(ChampionnatFormType::class, $championnat);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +51,7 @@ class HomeController extends AbstractController
         }
         return $this->render('home/ajouterchampionnat.html.twig', [
             'form' => $form->createView(),
-
+            'routeName' => $routeName
         ]);
     }
 
@@ -58,7 +61,7 @@ class HomeController extends AbstractController
     public function editChampionnat(EntityManagerInterface $manager, Request $request, Championnat $championnat)
     {
 
-
+        $routeName = $request->attributes->get('_route');
         $form = $this->createForm(ChampionnatFormType::class, $championnat);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +71,7 @@ class HomeController extends AbstractController
         }
         return $this->render('home/ajouterchampionnat.html.twig', [
             'form' => $form->createView(),
-
+            'routeName' => $routeName
         ]);
     }
 
@@ -92,7 +95,6 @@ class HomeController extends AbstractController
         $club = $clubRepo->findOneBy(['id' => $id]);
         $idChampionnat = $club->getChampionnat();
         $championnnat = $championnatRepo->findOneBy(['id' => $idChampionnat]);
-        dump($club);
 
         return $this->render('club/detailClub.html.twig', [
             'club'=>$club

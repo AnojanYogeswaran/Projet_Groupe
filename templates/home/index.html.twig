@@ -4,76 +4,73 @@
 
 {% block body %}
 
-    <div class="ms-3 container mx-auto">
-        <div class="my-3">
-            <div class="my-3">
-                <a href="{{ path('ajouterclub') }}"> Ajouter Club </a>
-
+    <div class="container">
+        <div class="my-3 col-10 mx-auto">
+            <div class="my-3 row">
+                <a class="col-2 btn btn-warning me-2" href="{{ path('ajouterclub') }}"> Ajouter Club </a>
+                <a class="col-3 btn btn-warning" href="{{ path('championnat') }}"> Liste des Championnats </a>
             </div>
-            <div class="col-7 mx-auto">
-                <h2 class="text-center"> Groupe A </h2>
-                <table class="table">
-                    <thead>
-                    <tr class="text-center">
-                        <th scope="col">Nom</th>
-                        <th scope="col">Points</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                {% for club in clubs|filter(c => c.groupe == 'A') %}
-
-                    <tr class="text-center">
-
-                        <td class="col-3 text-left"> <a href="{{ path('detailclub', {'id':club.id}) }}">{{ club.nom }}</a></td>
-                        <td class="col-3 text-center"> {{ club.points }}</td>
-                        <td> <a class="btn btn-primary mx-1" href="{{ path('editerclub',{'id':club.id}) }}"> Editer </a>
-                             <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a>
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-        </div>
-            {# Groupe B #}
-            <div class="col-7 mx-auto mt-5">
-                <h2 class="text-center"> Groupe B </h2>
-                <table class="table">
-                    <thead>
-                    <tr class="text-center">
-                        <th scope="col">Nom</th>
-                        <th scope="col">Points</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for club in clubs|filter(c => c.groupe == 'B') %}
-
+            {% for groupe in groupes %}
+                <div class="card my-3">
+                    <h2 class="text-center"> Groupe {{ groupe }} </h2>
+                    <table class="table">
+                        <thead>
                         <tr class="text-center">
-
-                            <td class="col-3 text-left"><a href="{{ path('detailclub', {'id':club.id}) }}">{{ club.nom }}</a> </td>
-                            <td class="col-3 text-center" > {{ club.points }}</td>
-                            <td> <a class="btn btn-primary mx-1" href="{{ path('editerclub',{'id':club.id}) }}"> Editer </a>
-                                <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a>
-                            </td>
+                            <th scope="col">Classement</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Points</th>
+                            <th scope="col">Statut</th>
+                            <th scope="col">Action</th>
 
                         </tr>
+                        </thead>
+                        <tbody>
+                        {% for club in clubs|filter(c => c.groupe == groupe)|sort((a, b) => b.points <=> a.points) %}
 
-                    {% endfor %}
-                    </tbody>
-                </table>
+                            <tr class="text-center">
+                                <th scope="row">{{ loop.index }}</th>
+                                <td class="col-3 text-left"> <a class="unstyle" href="{{ path('detailclub', {'id':club.id}) }}">{{ club.nom }}</a></td>
+                                <td class="col-3 text-center"> {{ club.points }}</td>
+                                <td > {% if loop.index == 1 or loop.index == 2  %}
+                                        <span class="text-success">Qualifié</span>
+                                    {% else %}
+                                        <span class="text-danger">Non Qualifié</span>
+                                    {% endif %}
+                                </td>
+                                <td> <a class="btn btn-primary mx-1" href="{{ path('editerclub',{'id':club.id}) }}"> Editer </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                        Supprimer
+                                    </button>
+                                    {# <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a> #}
+                                </td>
+
+                            </tr>
+                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                            <a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}"> Supprimer </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
 
 
-            </div>
+                </div>
+            {% endfor %}
 
-        </div>
-        {# Groupe B #}
+
     </div>
 
 

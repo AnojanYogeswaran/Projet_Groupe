@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1 class="text-center text-white">
+        {% if routeName == 'ajouterchampionnat' %}
+            Ajouter
+        {%  else %}
+            Editer
+        {% endif %}
+        un championnat
+    </h1>
+    <div class="my-5 text-white">
+        <div class="col-7 mx-auto">
+            {{ form_start(form) }}
+            <div class="col">
+                {{ form_row(form.nom) }}
+            </div>
+            <div class="col my-3">
+                {{ form_row(form.pays) }}
+            </div>
+            <div class="text-center">
+                <button class="btn btn-warning" type="submit"> Enregistrer </button>
+            </div>
 
-    {{ form(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
