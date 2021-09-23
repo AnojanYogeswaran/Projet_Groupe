@@ -55,6 +55,7 @@ class ClubController extends AbstractController
             $club->setChampionnat($clubChampionnat);
             $manager->persist($club);
             $manager->flush();
+            $this->addFlash('success',$club->getNom()." à été mise à jour");
             return $this->redirectToRoute('home');
         }
 
@@ -75,6 +76,7 @@ class ClubController extends AbstractController
 
         $manager->remove($club);
         $manager->flush();
+        $this->addFlash('delete',$club->getNom()." à été supprimé");
         return $this->redirectToRoute('home');
 
     }

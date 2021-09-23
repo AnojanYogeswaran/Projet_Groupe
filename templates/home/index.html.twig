@@ -7,6 +7,29 @@
 
 	<div class="container">
 		<div class="my-3 col-sm-10 mx-auto ">
+			{% for message in app.flashes('success') %}
+
+
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<div>{{message}}</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+
+			{% endfor %}
+
+			{% for message in app.flashes('delete') %}
+
+
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<div>{{message}}</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+
+
+			{% endfor %}
+
+
 			<div class="my-3 mx-1 row">
 				<a class="col-sm-2 btn btn-warning me-2 my-3" href="{{ path('ajouterclub') }}">
 					Ajouter Club

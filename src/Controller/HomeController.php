@@ -67,6 +67,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($championnat);
             $manager->flush();
+            $this->addFlash('success',$championnat->getNom()." à été mise à jour");
             return $this->redirectToRoute('championnat');
         }
         return $this->render('home/ajouterchampionnat.html.twig', [
@@ -83,6 +84,7 @@ class HomeController extends AbstractController
 
         $manager->remove($championnat);
         $manager->flush();
+        $this->addFlash('delete',$championnat->getNom()." à été supprimé");
         return $this->redirectToRoute('championnat');
 
     }
