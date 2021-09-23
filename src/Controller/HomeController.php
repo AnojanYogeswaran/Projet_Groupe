@@ -84,6 +84,7 @@ class HomeController extends AbstractController
 
         $manager->remove($championnat);
         $manager->flush();
+        //Envoie une notification apres 
         $this->addFlash('delete',$championnat->getNom()." à été supprimé");
         return $this->redirectToRoute('championnat');
 
