@@ -1,8 +1,6 @@
 const deleteBtn = document.querySelectorAll(".deleteModalBtn");
 const localHost = location.protocol + "//" + location.host;
 
-console.log(localHost);
-
 //Recupere le lien de l'element à supprimer de l'attribut href parent et l'inserer dans le l'attribut href du boutton du modal
 const deletRedirect = (e) => {
   {
