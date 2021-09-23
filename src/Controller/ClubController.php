@@ -57,10 +57,14 @@ class ClubController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('home');
         }
+
+        
+
         return $this->render('club/index.html.twig', [
             'form' => $form->createView(),
             'championnats' => $championnatAll,
-            'routeName' => $routeName
+            'routeName' => $routeName,
+            'club'=> $club
         ]);
     }
     /**

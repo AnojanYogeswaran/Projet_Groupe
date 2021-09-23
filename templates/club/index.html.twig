@@ -42,11 +42,20 @@
 				Championnat
 			</label>
 			<select name="championnat" class="form-control my-2">
-				{% for championnat in championnats %}
-					<option value="{{ championnat.id }}">
-						{{ championnat.nom }}
-					</option>
-				{% endfor %}
+				{% if routeName == 'ajouterclub' %}
+					{% for championnat in championnats %}
+						<option value="{{ championnat.id }}">
+							{{ championnat.nom }}
+						</option>
+					{% endfor %}
+				{% else %}
+					{% for championnat in championnats %}
+						<option value="{{ championnat.id }}" {% if club.championnat.id == championnat.id %} selected {% endif %}>
+							{{ championnat.nom }}
+						</option>
+					{% endfor %}
+
+				{% endif %}
 
 
 			</select>
