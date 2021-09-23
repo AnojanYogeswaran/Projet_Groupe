@@ -11,9 +11,7 @@
 				<a class="col-sm-2 btn btn-warning me-2 my-3" href="{{ path('ajouterclub') }}">
 					Ajouter Club
 				</a>
-				<a class="col-sm-3 btn btn-warning my-3" href="{{ path('championnat') }}">
-					Liste des Championnats
-				</a>
+
 			</div>
 			{% for groupe in groupes|sort((a,b)=> a <=> b) %}
 				<div class="card my-3">
@@ -54,9 +52,9 @@
 											<a class="btn btn-primary mx-1 my-1" href="{{ path('editerclub',{'id':club.id}) }}">
 												Editer
 											</a>
-											<button type="button" class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#deleteModal">
+											<a href="{{ path('supprimerclub',{'id':club.id}) }}" class="btn btn-danger my-1 deleteModalBtn" data-bs-toggle="modal" data-bs-target="#deleteModal">
 												Supprimer
-											</button>
+											</a>
 
 										</td>
 
@@ -66,13 +64,11 @@
 											<div class="modal-content">
 
 												<div class="modal-body">
-													<h5>Voulez-vous Supprimez le club
-														{{club.nom}}
-														?
+													<h5>Voulez-vous Supprimez ?
 													</h5>
 												</div>
 												<div class="d-flex justify-content-end p-3">
-													<a class="btn btn-danger mx-1" href="{{ path('supprimerclub',{'id':club.id}) }}">
+													<a id="delete" class="btn btn-danger mx-1 " href="{{ path('supprimerclub',{'id':club.id}) }}">
 														Oui
 													</a>
 													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
