@@ -7,6 +7,7 @@ const deletRedirect = (e) => {
     e.preventDefault();
     const link = e.target.href;
     document.querySelector("#delete").setAttribute("href", link);
+    var row = e.target.parentNode;
   }
 };
 
